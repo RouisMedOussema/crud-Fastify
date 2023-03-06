@@ -51,7 +51,7 @@ const addItemOpts = {
     handler: addItem
 }
 
-// Options to add item
+// Options to delete item
 const deleteItemOpts = {
     schema: {
         response: {
