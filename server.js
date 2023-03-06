@@ -1,5 +1,4 @@
 const fastify = require('fastify')({ logger: true })
-const PORT = 5000
 const routes = require('./routes/items-routes')
 const fastifySwagger = require('@fastify/swagger')
 const fastifySwaggerUi = require('@fastify/swagger-ui')
@@ -17,6 +16,8 @@ fastify.register(fastifySwaggerUi, {
           },
     }
 })
+
+const PORT = 5000
 const start = async () => {
     try {
         await fastify.listen(PORT)
