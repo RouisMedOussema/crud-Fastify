@@ -1,88 +1,52 @@
 const { getItems, getItem, addItem, deleteItem, updateItem} = require('../controllers/items-controllers')
+const {getItemsSchema, getItemSchema, addItemSchema, deleteItemSchema, updateItemSchema} = require('../schemas/items-schemas')
 
-// Item schema
-const Item = {
-    type: 'object',
-    properties: {
-        id: { type: 'string' },
-        name: { type: 'string' }
-    }
-}
-
-// Options for get all items
+// Options to get all items
 const getItemsOpts = {
-    schema: {
-        response: {
-            200: {
-                type: 'array',
-                items: Item
-            }
-        }
-    },
+    method: "GET",
+    url: "/items",
+    schema: getItemsSchema,
     handler: getItems
 }
 
-// Options for single item
+// Options to single item
 const getItemOpts = {
-    schema: {
-        response: {
-            200: Item
-        }
-    },
+    method: "GET",
+    url: "/items/:id",
+    schema: getItemSchema,
     handler: getItem
 }
 
 // Options to add item
 const addItemOpts = {
-    schema: {
-        body: {
-            type: 'object',
-            required: ['name'],
-            properties: {
-                name: {
-                    type: 'string',
-                }
-            }
-        },
-        response: {
-            201: Item
-        }
-    },
+    method: "POST",
+    url: "/items",
+    schema: addItemSchema,
     handler: addItem
 }
 
 // Options to delete item
 const deleteItemOpts = {
-    schema: {
-        response: {
-            200: {
-                type: 'object',
-                properties: {
-                    message: {type: 'string'}
-                }
-            }
-        }
-    },
+    method: "DELETE",
+    url: "/items/:id",
+    schema: deleteItemSchema,
     handler: deleteItem
 }
 
 // Options to update item
 const updateItemOpts = {
-    schema: {
-        response: {
-            200: Item
-        }
-    },
+    method: "PUT",
+    url: "/items/:id",
+    schema: updateItemSchema,
     handler: updateItem
 }
 
 const itemRoutes = (fastify, options, done) => {
-
-    fastify.get('/items', getItemsOpts)
-    fastify.get('/items/:id', getItemOpts)
-    fastify.post('/items', addItemOpts)
-    fastify.delete('/items/:id', deleteItemOpts)
-    fastify.put('/items/:id', updateItemOpts)
+    fastify.route(getItemsOpts)
+    fastify.route(getItemOpts)
+    fastify.route(addItemOpts)
+    fastify.route(deleteItemOpts)
+    fastify.route(updateItemOpts)
 
     done()
 }
