@@ -17,7 +17,10 @@ const addItem = (req, reply) => {
     }
     items = [...items, item]
     reply.code(201).send(item)
-
 }
-
-module.exports = {getItems, getItem, addItem}
+const deleteItem = (req, reply) => {
+    const { id } = req.params
+    items = items.filter((item) => item.id.toString() !== id)
+    reply.send({message: `Item ${id} has been removed`})
+}
+module.exports = {getItems, getItem, addItem, deleteItem}
