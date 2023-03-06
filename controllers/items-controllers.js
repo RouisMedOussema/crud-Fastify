@@ -23,4 +23,12 @@ const deleteItem = (req, reply) => {
     items = items.filter((item) => item.id.toString() !== id)
     reply.send({message: `Item ${id} has been removed`})
 }
-module.exports = {getItems, getItem, addItem, deleteItem}
+const updateItem = (req, reply) => {
+    const { id } = req.params
+    const { name } = req.body
+    items = items.map((item) => item.id.toString() === id ? {id, name} : item)
+    item = items.find(item => item.id.toString() === id)
+    reply.send(item)
+}
+
+module.exports = {getItems, getItem, addItem, deleteItem, updateItem}
