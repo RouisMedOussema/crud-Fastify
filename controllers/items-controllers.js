@@ -1,4 +1,3 @@
-//const { v4: uuidv4 } = require('uuid')
 const Item = require('../collections/item-schema')
 const mongoose = require('mongoose')
 
