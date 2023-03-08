@@ -1,4 +1,4 @@
-const { getItems, getItem, addItem, deleteItem, updateItem} = require('../controllers/items-controllers')
+const { getAllItems, getSingleItem, addItem, deleteItem, updateItem} = require('../controllers/items-controllers')
 const {getItemsSchema, getItemSchema, addItemSchema, deleteItemSchema, updateItemSchema} = require('../schemas/items-schemas')
 
 // Options to get all items
@@ -6,15 +6,15 @@ const getItemsOpts = {
     method: "GET",
     url: "/items",
     schema: getItemsSchema,
-    handler: getItems
+    handler: getAllItems
 }
 
-// Options to single item
+// Options to get single item
 const getItemOpts = {
     method: "GET",
-    url: "/items/:id",
+    url: "/items/:_id",
     schema: getItemSchema,
-    handler: getItem
+    handler: getSingleItem
 }
 
 // Options to add item
@@ -28,7 +28,7 @@ const addItemOpts = {
 // Options to delete item
 const deleteItemOpts = {
     method: "DELETE",
-    url: "/items/:id",
+    url: "/items/:_id",
     schema: deleteItemSchema,
     handler: deleteItem
 }
@@ -36,7 +36,7 @@ const deleteItemOpts = {
 // Options to update item
 const updateItemOpts = {
     method: "PUT",
-    url: "/items/:id",
+    url: "/items/:_id",
     schema: updateItemSchema,
     handler: updateItem
 }
