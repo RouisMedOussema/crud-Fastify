@@ -1,12 +1,12 @@
 const itemSchema = {
     type: 'object',
     properties: {
-        id: { type: 'string' },
+        //id: { type: 'string' },
         name: { type: 'string' }
     }
 }
 
-const getItemsSchema = {
+const getAllItemsSchema = {
     response: {
         200: {
             type: 'array',
@@ -15,7 +15,7 @@ const getItemsSchema = {
     }
 }
 
-const getItemSchema = {
+const getSingleItemSchema = {
     response: {
         200: itemSchema
     }
@@ -54,8 +54,8 @@ const updateItemSchema = {
 }
 
 module.exports = {
-    getItemsSchema,
-    getItemSchema,
+    getAllItemsSchema,
+    getSingleItemSchema,
     addItemSchema,
     deleteItemSchema,
     updateItemSchema
